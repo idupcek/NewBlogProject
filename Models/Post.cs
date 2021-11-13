@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using TheBlogProject.Enums;
 
 namespace TheBlogProject.Models
@@ -7,7 +8,7 @@ namespace TheBlogProject.Models
     public class Post
     {
         public int Id { get; set; }
-        public int BlogId { get; set; }
+        public int? BlogId { get; set; }
         public string AuthorId { get; set; }
 
         [Required]
@@ -33,13 +34,14 @@ namespace TheBlogProject.Models
         public string Slug { get; set; }
         public byte[] ImageData { get; set; }
         public string ContentType { get; set; }
+        [NotMapped]
         public IFormFile Image { get; set; }
 
         //navigation property
         public virtual Blog Blog { get; set; }
         public virtual BlogUser Author { get; set; }
-        public ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
-        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
+        public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
     }
 }
  

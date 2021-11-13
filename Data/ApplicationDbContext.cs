@@ -10,5 +10,10 @@ namespace TheBlogProject.Data
             : base(options)
         {
         }
+
+        public DbSet<Blog> Blogs { get;}
+        public DbSet<Post> Posts { get;}
+        public DbSet<Comment> Comments { get;}
+        public DbSet<Tag> Tags { get;}
     }
 }
